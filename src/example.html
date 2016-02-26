@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="./index.js"></script>
+    <style>
+        .month {
+            text-align: center;
+        }
+
+        .day[isholiday=true] {
+            background-color: yellow
+        }
+
+        .weekday {
+            font-weight: 300;
+            font-size: 18px;
+        }
+
+        .monthTitle {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<form>
+    <div>
+        <label>显示月份:<input type="text" name="month" placeholder="默认当前月" value="2"/> </label>
+    </div>
+    <div>
+        <label>显示年份:<input type="text" name="year" placeholder="默认当前年" value="2016"/> </label>
+    </div>
+    <div>
+        <label>显示多少个月:<input type="text" name="displayMonthNum" placeholder="例如12个月,12" value="1"/> </label>
+    </div>
+    <div>
+        <label>节假日数据:<textarea name="holidayData" placeholder="节假日数据" rows="5" cols="50">
+            {
+                "2016-2-7": "除夕",
+                "2016-2-8": "春节",
+                "2016-4-1": "愚人节"
+            }
+        </textarea></label>
+    </div>
+    <div>
+        <label>天样式名称:<input type="text" name="dayClass" placeholder="天样式名称" value="day"/> </label>
+    </div>
+    <div>
+        <label>每周样式名称:<input type="text" name="weekClass" placeholder="每周样式名称" value="week"/> </label>
+    </div>
+    <div>
+        <label>月样式名称:<input type="text" name="monthClass" placeholder="月样式名称" value="month"/> </label>
+    </div>
+
+    <div>
+        <label>周几名称:<textarea name="weekdayName" placeholder="周几名称" cols="50" rows="5">
+            ["日", "一", "二", "三", "四", "五", "六"]
+            </textarea>
+        </label>
+    </div>
+
+    <div>
+        <input type="button" value="生成" onclick="return makeCalender()"/>
+    </div>
+</form>
+
+
+<div>
+    <h1>日历</h1>
+    <div id="cal"></div>
+</div>
+
+<script>
+
+    function makeCalender() {
+        var month = getValueByName("month")
+        var year = getValueByName("year")
+        var displayMonthNum = getValueByName("displayMonthNum");
+        var holidayData = getValueByName("holidayData");
+        holidayData = JSON.parse(holidayData);
+        var dayClass = getValueByName("dayClass");
+        var weekClass = getValueByName("weekClass");
+        var monthClass = getValueByName("monthClass");
+        var weekdayName = getValueByName("weekdayName");
+        weekdayName = JSON.parse(weekdayName);
+
+        var cal = new Calendar({
+            holiday: holidayData,       //节假日数据
+            dayClass: dayClass,         //天样式
+            weekClass: weekClass,       //周样式
+            monthClass: monthClass,     //月份样式
+            weekdayName: weekdayName,   //星期一,星期二等等
+            isShowMonth: true   //是否显示标题 2016年2月
+        })
+
+        document.getElementById("cal").innerHTML = cal.renderMonth(month, year, displayMonthNum).join("")
+    }
+
+    function getValueByName(name) {
+        return document.getElementsByName(name)[0].value
+    }
+
+    makeCalender();
+</script>
+</body>
+</html>
