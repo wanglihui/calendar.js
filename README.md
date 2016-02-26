@@ -8,6 +8,10 @@
 ```
     var options = {};
     var cal = new Calendar(options);
+    var showMonthNum = 12;  //显示12个月
+    var month = 2;
+    var year = 2016;
+    cal.renderMonth(month, year, showMonthNum);
 
 
     options可选项:
