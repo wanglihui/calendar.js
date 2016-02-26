@@ -24,6 +24,10 @@
         weekDayName 通过此参数个性化月份头部, //默认 ["日", "一", "二", "三", "四", "五", "六"];
         holiday  通过此参数注入节假日数据:如{"2016-2-7": "除夕", "2016-2-8": "春节"} //默认 {};
         isShowMonth 是否显示当前年月,如"2016年2月"//默认 false;
+        show: function(data) {  //自定义如何显示月份数据
+            //data为月份html代码
+            document.write(data);
+        }
 ```
 
 ### [example](./src/example.html)
