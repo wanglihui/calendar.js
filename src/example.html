@@ -101,6 +101,8 @@
                 })
                 .then(function(date) {
                     console.info('最终选择日期是:', date);
+                    alert("你选择的日期是", date);
+                    window.location.reload();
                 })
                 .catch(function(err) {
                     console.info(err.stack);
