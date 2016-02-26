@@ -249,7 +249,13 @@
             month = month + 1;
         }
 
-        return self.show(ret.join(""));
+        if (self.show && typeof self.show == 'function') {
+            return self.show(ret.join(""));
+        } else {
+            return new self.PromiseLib(function(resolve) {
+                resolve(ret.join(""));
+            });
+        }
     }
 
     var moduleName = Calendar;
