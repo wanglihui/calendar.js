@@ -1,0 +1,22 @@
+{
+  "name": "calender.js",
+  "version": "1.0.0",
+  "description": "可以追加节假日的日历，任意月份显示，任意显示多个月份",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanglihui/calendar.js.git"
+  },
+  "keywords": [
+    "calendar.js"
+  ],
+  "author": "wanglihui.sjz@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanglihui/calendar.js/issues"
+  },
+  "homepage": "https://github.com/wanglihui/calendar.js#readme"
+}
