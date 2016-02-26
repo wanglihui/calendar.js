@@ -51,6 +51,23 @@
         this.weekDayName = options.weekDayName || ["日", "一", "二", "三", "四", "五", "六"];
         this.holiday = options.holiday || {};
         this.isShowMonth = options.isShowMonth || false;
+        //this.containerId = options.containerId || 'cal';
+        this.PromiseLib = options.PromiseLib || Promise;
+        this.show = options.show;
+        if (!this.show) {
+            var self = this;
+            this.show = function(data) {
+                var calObj = document.getElementById("cal");
+                if (!calObj) {
+                    document.getElementsByName("body")[0].appendChild('<div id="cal"></div>');
+                }
+                document.getElementById("cal").innerHTML = data;
+                return new self.PromiseLib(function(resolve) {
+                    resolve([]);
+                });
+            };
+        }
+
     }
 
     Calendar.prototype.renderDayFn = function(day, month, year) {
@@ -185,6 +202,21 @@
         return result;
     }
 
+    Calendar.prototype.selectDate = function() {
+        var self = this;
+        var daysList = document.getElementsByClassName(self.dayClass);
+        return new self.PromiseLib(function(resolve, reject) {
+            for(var i= 0, ii = daysList.length; i<ii; i++) {
+                daysList[i].onclick = function() {
+                    var e = event;
+                    if (e.srcElement && e.srcElement.attributes["data"] && e.srcElement.attributes["data"].value) {
+                        resolve(e.srcElement.attributes["data"].value);
+                    }
+                }
+            }
+        });
+    }
+
     Calendar.prototype.renderMonth = function(month, year, max) {
         var self = this;
         if (!month) {
@@ -216,7 +248,8 @@
             ret.push(self.oneMonth(month, year));
             month = month + 1;
         }
-        return ret;
+
+        return self.show(ret.join(""));
     }
 
     var moduleName = Calendar;

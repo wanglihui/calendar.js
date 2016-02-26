@@ -95,7 +95,16 @@
             isShowMonth: true   //是否显示标题 2016年2月
         })
 
-        document.getElementById("cal").innerHTML = cal.renderMonth(month, year, displayMonthNum).join("")
+        return cal.renderMonth(month, year, displayMonthNum)
+                .then(function() {
+                    return cal.selectDate();
+                })
+                .then(function(date) {
+                    console.info('最终选择日期是:', date);
+                })
+                .catch(function(err) {
+                    console.info(err.stack);
+                })
     }
 
     function getValueByName(name) {
