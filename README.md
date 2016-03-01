@@ -38,6 +38,7 @@
 ```
     1.0.0 仅显示月份
     2.0.0 注入了如何渲染页面以及支持了promise操作
+    3.0.0 拆分calendar.js 支持promise挪到index.js 实现,calendar.js作为基本类库支持
 
     2.0.0使用如下:
     var cal = new Calender().renderMonth(2, 2016, 12)
@@ -47,4 +48,15 @@
         .then(function(date) {
             console.info("选择的日期是:", date);
         });
+
+    3.0.0 使用如下:
+    mobileSelectDate({}, {})
+    .then(function(selectedDate) {
+        console.info("您选择的日期是:"+selectedDate);
+    })
+    .catch(function(err) {
+        console.error(err);
+    });
+
+
 ```

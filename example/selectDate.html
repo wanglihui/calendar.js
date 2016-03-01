@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SelectDate</title>
+    <script src="../lib/calendar.js"></script>
+    <script src="../lib/index.js"></script>
+    <script>
+        window.onload = function() {
+
+            var step1 = function() {
+                alert("i'a work on other things, need to select one date!");
+                step2();
+            }
+
+            function step2 () {
+                mobileSelectDate({
+                    containerId: "calendar",
+                    isShowMonth: true
+                }, {
+                    month: 2,
+                    year: 2016,
+                    displayMonthNum: 6
+                })
+                .then(function(selectedDate) {
+                    alert("您选择的日期是:"+selectedDate);
+                    //window.location.reload();
+                    alert("now you can do other things!");
+                })
+                .catch(function(err) {
+                    console.error(err);
+                })
+            }
+
+            step1();
+        }
+    </script>
+</head>
+<body>
+test selectDate
+
+</body>
+
+</html>
