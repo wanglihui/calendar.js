@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Example</title>
-    <script src="../lib/index.js"></script>
+    <script src="../lib/calendar.js"></script>
     <style>
         .month {
             text-align: center;
@@ -96,17 +96,6 @@
         })
 
         return cal.renderMonth(month, year, displayMonthNum)
-                .then(function() {
-                    return cal.selectDate();
-                })
-                .then(function(date) {
-                    console.info('最终选择日期是:', date);
-                    alert("你选择的日期是:"+ date);
-                    window.location.reload();
-                })
-                .catch(function(err) {
-                    console.info(err.stack);
-                })
     }
 
     function getValueByName(name) {
